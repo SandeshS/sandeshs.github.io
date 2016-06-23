@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script language="javascript">
+function populateAssignmentID(field_id) {
+  var assignment_id_field = document.getElementById(field_id);
+  var paramstr = window.location.search.substring(1);
+  var parampairs = paramstr.split("&");
+  for (i in parampairs) {
+    var pair = parampairs[i].split("=");
+    if (pair[0] == "assignmentId") {
+      if (pair[1] == "ASSIGNMENT_ID_NOT_AVAILABLE") {
+        document.getElementById(&#39;previewnotice&#39;).innerHTML =
+          "<p><b>You are previewing this HIT.</b>  To perform this HIT, please accept it.</p>";
+      } else {
+        assignment_id_field.value = pair[1];
+      }
+      return;
+    }
+  }
+}
+
+</script>
+</head>
+<body onload="populateAssignmentID('myAssignmentId')">
+
+<h4>Thanks for working on this task!</h4>
+<form id="mturk_form" method="post" action="https://www.mturk.com/mturk/externalSubmit">
+    <input type="hidden" name="user_id" id="user_id" />
+    <input type="hidden" name="assignmentId" id="myAssignmentID" value="" />
+    <textarea name="feedback" rows=10 cols=60 placeholder="Enter any feedback you have about the task here"></textarea>
+    <br /><br />
+    <button class="btn btn-success" type="submit" value="Submit">Finish and Submit HIT</button>
+</form>
+</html>
