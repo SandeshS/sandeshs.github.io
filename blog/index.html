@@ -1,0 +1,21 @@
+---
+layout: default
+title: Blog
+---
+
+<div class="blog-archive" style="max-width: 800px; margin: 0 auto; padding: 20px;">
+  <h2>Technical Blog</h2>
+  <hr>
+  <ul style="list-style: none; padding-left: 0;">
+    {% for post in site.posts %}
+      <li style="margin-bottom: 25px;">
+        <span style="color: #666; font-size: 0.9em;">{{ post.date | date: "%B %d, %Y" }}</span> — 
+        <a href="{{ post.url | relative_url }}" style="font-weight: bold; font-size: 1.2em; text-decoration: none; color: #0066cc;">
+          {{ post.title }}
+        </a>
+        <p style="margin-top: 5px; color: #444;">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
